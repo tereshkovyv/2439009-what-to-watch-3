@@ -1,7 +1,9 @@
 # Личный проект «Что посмотреть»
 
 * Студент: [Юрий Терешков](https://up.htmlacademy.ru/univer-js3/3/user/2439009).
-* Наставник: [Антонов Константин Эдуардович.](https://htmlacademy.ru/profile/rawle51)
+
+ Наставник: [Антонов Константин Эдуардович.](https://htmlacademy.ru/profile/rawle51)
+
 
 ---
 
