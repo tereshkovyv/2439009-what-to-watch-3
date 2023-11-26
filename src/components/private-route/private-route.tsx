@@ -1,4 +1,5 @@
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
+import * as React from "react";
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
