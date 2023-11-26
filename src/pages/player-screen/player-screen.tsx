@@ -1,7 +1,12 @@
-export default function PlayerScreen(){
+export type PlayerScreenProps = {
+  src : string;
+  posterSrc : string;
+}
+
+export default function PlayerScreen(props : PlayerScreenProps){
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={props.src} className="player__video" poster={props.posterSrc}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
