@@ -6,8 +6,6 @@ import {TimeoutId} from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types'
 type FilmCardProps = {
   videoSrc : string;
   imageSrc : string;
-  id : string;
-  onMouseOver : (id : string) => void;
   name : string;
   link : string;
 }
@@ -24,7 +22,6 @@ export default function FilmCard(props : FilmCardProps){
     timer.current = setTimeout(() => {
       setIsReadyToPreview(true);
     }, 1000);
-    props.onMouseOver(props.id);
   }
   function onMouseLeaveHandler(){
     setIsActive(false);
