@@ -1,17 +1,12 @@
 import FilmsList from '../../components/films-list/films-list';
-import {CatalogGenresItem, CatalogGenresItemProps} from './catalog-genres-item.tsx';
-import {filmData} from '../../mocks/films.ts';
 import Footer from '../../components/footer/footer.tsx';
 import Header from '../../components/header/header.tsx';
 import FilmCard from './film-card.tsx';
+import CatalogGenresList from './catalog-genres-list.tsx';
 
 
 type MainScreenProps = {
-  name : string;
-  genre : string;
-  releaseDate : string;
-  menuItems : CatalogGenresItemProps[];
-  films : filmData[];
+  menuItems : string[];
 }
 
 export default function MainScreen(props : MainScreenProps){
@@ -32,17 +27,9 @@ export default function MainScreen(props : MainScreenProps){
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            {props.menuItems.map((itemProps) => (
-              <CatalogGenresItem
-                key = {itemProps.value}
-                isActive={itemProps.isActive}
-                href={itemProps.href}
-                value={itemProps.value}
-              />))}
-          </ul>
+          <CatalogGenresList items={props.menuItems} />
 
-          <FilmsList films={props.films}/>
+          <FilmsList/>
         </section>
 
         <Footer/>

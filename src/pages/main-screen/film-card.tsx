@@ -1,4 +1,4 @@
-import FilmButtonsMainScreen from "./film-buttons-main-screen.tsx";
+import FilmButtonsMainScreen from './film-buttons-main-screen.tsx';
 
 export default function FilmCard(){
   return(

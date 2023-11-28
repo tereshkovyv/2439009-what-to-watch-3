@@ -1,12 +1,9 @@
 import {filmData} from '../../mocks/films';
 import FilmCard from './film-card/film-card';
 import {useState} from 'react';
-
-type filmsListProps = {
-  films : filmData[];
-}
-
-export default function FilmsList({films} : filmsListProps) {
+import {useAppSelector} from '../../hooks';
+export default function FilmsList() {
+  const films = useAppSelector((state) => state.films);
   const [, setActiveFilmId] = useState('1');
   return (
     <>

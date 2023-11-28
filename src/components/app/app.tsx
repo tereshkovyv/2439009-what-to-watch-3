@@ -7,7 +7,6 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {PrivateRoute, AuthorizationStatus} from '../private-route/private-route';
 import {filmData, filmsMock} from '../../mocks/films';
-import {CatalogGenresItemProps} from '../../pages/main-screen/catalog-genres-item.tsx';
 import {playerMock} from '../../mocks/playerMock.ts';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen.tsx';
 
@@ -16,7 +15,7 @@ type appProps = {
   genre : string;
   films : filmData[];
   releaseDate : string;
-  menuItems : CatalogGenresItemProps[];
+  menuItems : string[];
 }
 
 export default function App({name, genre, films, releaseDate, menuItems} : appProps){
