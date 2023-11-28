@@ -1,5 +1,3 @@
-import {MouseEventHandler} from "react";
-
 type FilmCardProps = {
   id : string;
   onMouseEnter : (id : string) => void;

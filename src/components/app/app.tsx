@@ -7,9 +7,9 @@ import AddReviewScreen from '../../pages/add-review-screen/add-review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {PrivateRoute, AuthorizationStatus} from '../private-route/private-route';
-import {filmData, filmsMock} from "../../mocks/films";
-import {CatalogGenresItemProps} from "../../pages/main-screen/catalog-genres-item.tsx";
-import {playerMock} from "../../mocks/playerMock.tsx";
+import {filmData, filmsMock} from '../../mocks/films';
+import {CatalogGenresItemProps} from '../../pages/main-screen/catalog-genres-item.tsx';
+import {playerMock} from '../../mocks/playerMock.tsx';
 
 type appProps = {
   name : string;
