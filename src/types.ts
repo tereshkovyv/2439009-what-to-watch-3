@@ -8,6 +8,22 @@ export type FilmShort = {
     genre : string;
 }
 
+export type AuthData = {
+    login: string;
+    password: string;
+};
+
+export type UserData = {
+    id: number;
+    email: string;
+    token: string;
+};
+
+export type ErrorData = {
+    property : string;
+    messages : string[];
+}
+
 export type AppDispatch = typeof store.dispatch;
 
 export type State = ReturnType<typeof store.getState>;

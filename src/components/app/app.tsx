@@ -1,13 +1,15 @@
 import MainScreen from '../../pages/main-screen/main-screen';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
 import MyListScreen from '../../pages/my-list-screen/my-list-screen';
 import MovieScreen from '../../pages/movie-screen/movie-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import {PrivateRoute, AuthorizationStatus} from '../private-route/private-route';
+import {PrivateRoute} from '../private-route/private-route';
 import {playerMock} from '../../mocks/playerMock.ts';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen.tsx';
+import HistoryRoute from '../history-route/history-route.tsx';
+import browserHistory from '../../browser-history.ts';
 
 type appProps = {
   menuItems : string[];
@@ -15,12 +17,12 @@ type appProps = {
 
 export default function App({menuItems} : appProps){
   return (
-    <BrowserRouter>
+    <HistoryRoute history={browserHistory}>
       <Routes>
         <Route path='/' element={<MainScreen menuItems={menuItems}/>} />
         <Route path='/login' element={<SignInScreen/>} />
         <Route path='/myList' element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen /></PrivateRoute>
+          <PrivateRoute><MyListScreen /></PrivateRoute>
         }
         />
         <Route path='/films/:id/*' element={<MovieScreen/> }/>
@@ -28,6 +30,6 @@ export default function App({menuItems} : appProps){
         <Route path='/player/:id' element={<PlayerScreen src={playerMock.src} posterSrc={playerMock.posterSrc}/>} />
         <Route path='*' element={<NotFoundPage/>} />
       </Routes>
-    </BrowserRouter>
+    </HistoryRoute>
   );
 }
