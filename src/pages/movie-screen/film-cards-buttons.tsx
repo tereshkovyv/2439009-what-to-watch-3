@@ -1,4 +1,9 @@
+import {useAppSelector} from '../../hooks';
+import {AuthorizationStatus} from '../../consts.ts';
+import {Link} from 'react-router-dom';
+
 export default function FilmCardsButtons(){
+  const isUserAuthenticated = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
   return (
     <div className="film-card__buttons">
       <button className="btn btn--play film-card__button" type="button">
@@ -14,7 +19,7 @@ export default function FilmCardsButtons(){
         <span>My list</span>
         <span className="film-card__count">9</span>
       </button>
-      <a href="add-review.html" className="btn film-card__button">Add review</a>
+      {isUserAuthenticated && <Link to={`/films/${5}/addReview`} className="btn film-card__button">Add review</Link>}
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AppDispatch, AuthData, Film, FilmShort, State, UserData} from '../types.ts';
+import {AppDispatch, AuthData, Film, FilmComment, FilmCommentBeingSent, FilmShort, State, UserData} from '../types.ts';
 import {AxiosInstance} from 'axios';
 import {
   changeAuthorizationStatus,
   loadFilms,
-  redirectToRoute,
+  redirectToRoute, setComments, setCommentsLoadingStatus,
   setFilmData, setFilmDataLoadingStatus,
   setFilmsDataLoadingStatus
 } from './action.ts';
@@ -94,4 +94,30 @@ export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
     dispatch(setFilmDataLoadingStatus(false));
     dispatch(setFilmData(data));
   }
+);
+
+export const fetchCommentsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchComments',
+  async (id, {dispatch, extra: api}) => {
+    dispatch(setCommentsLoadingStatus(true));
+    const {data} = await api.get<FilmComment[]>(`/comments/${id}`);
+    dispatch(setCommentsLoadingStatus(false));
+    dispatch(setComments(data));
+  }
+);
+
+export const sendCommentAction = createAsyncThunk<void, FilmCommentBeingSent, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/sendComment',
+  async ({id, comment, rating}, {dispatch, extra: api}) => {
+    await api.post<UserData>(`/comments/${id}`, {comment, rating});
+    dispatch(redirectToRoute(`films/${id}`));
+  },
 );

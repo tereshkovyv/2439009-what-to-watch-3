@@ -1,10 +1,26 @@
-import {useState} from 'react';
+import {FormEvent, useState} from 'react';
 import {Star} from './star.tsx';
+import {store} from '../../store';
+import {sendCommentAction} from '../../store/api-actions.tsx';
+import {FilmCommentBeingSent} from '../../types.ts';
+import {useAppSelector} from '../../hooks';
 
 export function AddReviewForm() {
   const [reviewData, setReviewData] = useState({rating : 0, text : ''});
+  const filmId = useAppSelector((state) => state.film?.id);
+  function onSubmit(evt: FormEvent<HTMLFormElement>){
+    evt.preventDefault();
+    if (filmId){
+      const dataToBeingSent: FilmCommentBeingSent = {
+        id : filmId,
+        comment : reviewData.text,
+        rating : reviewData.rating
+      };
+      store.dispatch(sendCommentAction(dataToBeingSent));
+    }
+  }
   return (
-    <form action="#" className="add-review__form">
+    <form onSubmit={onSubmit} className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
           {Array.from(Array(10).keys()).map((i) => (
@@ -16,6 +32,7 @@ export function AddReviewForm() {
       <div className="add-review__text">
         <textarea className="add-review__textarea" name="review-text" id="review-text"
           placeholder="Review text"
+          onChange={(event) => setReviewData({...reviewData, text: event.target.value})}
         >
         </textarea>
         <div className="add-review__submit">

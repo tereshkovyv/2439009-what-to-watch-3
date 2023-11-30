@@ -3,25 +3,29 @@ import {
   changeGenre,
   loadFilms,
   changeAuthorizationStatus,
-  setFilmsDataLoadingStatus, setError, setFilmData, setFilmDataLoadingStatus
+  setFilmsDataLoadingStatus, setError, setFilmData, setFilmDataLoadingStatus, setComments, setCommentsLoadingStatus
 } from './action.ts';
-import {ErrorData, Film, FilmShort} from '../types.ts';
+import {ErrorData, Film, FilmComment, FilmShort} from '../types.ts';
 import {AuthorizationStatus} from '../consts.ts';
 
 type InitialState = {
   genre : string;
   films : FilmShort[];
+  comments : FilmComment[];
   isFilmsDataLoading : boolean;
   authorizationStatus : AuthorizationStatus;
   error : ErrorData | null;
   film : Film | null;
   isFilmLoading : boolean;
+  isCommentsLoading : boolean;
 }
 
 const initialState: InitialState = {
   genre : 'All genres',
+  comments : [],
   films : [],
   authorizationStatus: AuthorizationStatus.Unknown,
+  isCommentsLoading : false,
   isFilmsDataLoading : false,
   error : null,
   film : null,
@@ -50,6 +54,12 @@ const reducer = createReducer(initialState, (builder) =>{
     })
     .addCase(setFilmDataLoadingStatus, (state, action) => {
       state.isFilmsDataLoading = action.payload;
+    })
+    .addCase(setComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(setCommentsLoadingStatus, (state, action) => {
+      state.isCommentsLoading = action.payload;
     });
 });
 
