@@ -1,7 +1,7 @@
 import {store} from '../../store';
-import {changeGenre, loadFilms} from '../../store/action.ts';
+import {changeGenre} from '../../store/action.ts';
 import {useState} from 'react';
-import {fetchFilmsAction} from "../../store/api-actions.tsx";
+import {fetchFilmsAction} from '../../store/api-actions.tsx';
 
 type CatalogGenresListProps = {
     items : string[];
