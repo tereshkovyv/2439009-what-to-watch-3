@@ -25,7 +25,7 @@ export default function App({menuItems} : appProps){
           <PrivateRoute><MyListScreen /></PrivateRoute>
         }
         />
-        <Route path='/films/:id/*' element={<MovieScreen/> }/>
+        <Route path='/films/:id/' element={<MovieScreen /> }/>
         <Route path='/films/:id/addReview' element={<AddReviewScreen/>} />
         <Route path='/player/:id' element={<PlayerScreen src={playerMock.src} posterSrc={playerMock.posterSrc}/>} />
         <Route path='*' element={<NotFoundPage/>} />

@@ -24,18 +24,18 @@ export const createAPI = (): AxiosInstance => {
     },
   );
 
+  type Error = {
+      details : ErrorData[];
+  }
+
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError) => {
+    (error: AxiosError<Error>) => {
       if (error.response) {
-        const errorData = error.response.data['details'][0];
-        const detailMessage : ErrorData = {
-          property : errorData['property'],
-          messages : errorData['messages']
-        };
+        const errorObject : Error = (error.response.data);
+        const detailMessage : ErrorData = errorObject.details[0];
         store.dispatch(setError(detailMessage));
       }
-
       throw error;
     }
   );

@@ -8,6 +8,23 @@ export type FilmShort = {
     genre : string;
 }
 
+export type Film = {
+  name : string;
+  posterImage : string;
+  backgroundImage : string;
+  backgroundColor : string;
+  videoLink : string;
+  description : string;
+  rating : string;
+  scoresCount : string;
+  director : string;
+  starring : string[];
+  runTime : string;
+  genre : string;
+  released : string;
+  isFavorite : boolean;
+}
+
 export type AuthData = {
     login: string;
     password: string;

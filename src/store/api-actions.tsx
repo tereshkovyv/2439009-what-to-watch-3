@@ -1,7 +1,13 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AppDispatch, AuthData, FilmShort, State, UserData} from '../types.ts';
+import {AppDispatch, AuthData, Film, FilmShort, State, UserData} from '../types.ts';
 import {AxiosInstance} from 'axios';
-import {changeAuthorizationStatus, loadFilms, redirectToRoute, setFilmsDataLoadingStatus} from './action.ts';
+import {
+  changeAuthorizationStatus,
+  loadFilms,
+  redirectToRoute,
+  setFilmData, setFilmDataLoadingStatus,
+  setFilmsDataLoadingStatus
+} from './action.ts';
 import {APIRoute, AppRoute, AuthorizationStatus} from '../consts.ts';
 import {dropToken, saveToken} from '../services/token.ts';
 
@@ -10,12 +16,26 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
     state: State;
     extra: AxiosInstance;
 }>(
-  'data/fetchQuestions',
+  'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setFilmsDataLoadingStatus(true));
+    dispatch(setFilmDataLoadingStatus(true));
     const {data} = await api.get<FilmShort[]>('/films');
-    dispatch(setFilmsDataLoadingStatus(false));
+    dispatch(setFilmDataLoadingStatus(false));
     dispatch(loadFilms(data));
+  }
+);
+
+export const fetchFilmAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFilm',
+  async (id, {dispatch, extra: api}) => {
+    dispatch(setFilmsDataLoadingStatus(true));
+    const {data} = await api.get<Film>(`/films/${id}`);
+    dispatch(setFilmsDataLoadingStatus(false));
+    dispatch(setFilmData(data));
   }
 );
 
@@ -60,4 +80,18 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
     dispatch(changeAuthorizationStatus(AuthorizationStatus.NoAuth));
   },
+);
+
+export const fetchPromoFilmAction = createAsyncThunk<void, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFilm',
+  async (_arg, {dispatch, extra: api}) => {
+    dispatch(setFilmDataLoadingStatus(true));
+    const {data} = await api.get<Film>('/promo');
+    dispatch(setFilmDataLoadingStatus(false));
+    dispatch(setFilmData(data));
+  }
 );

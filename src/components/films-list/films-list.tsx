@@ -5,14 +5,14 @@ import ShowMoreButton from './show-more-button.tsx';
 import Spinner from '../spinner/spinner.tsx';
 import {FilmShort} from '../../types.ts';
 export default function FilmsList() {
-  const films2 = useAppSelector((state) => state.isFilmsDataLoading);
+  const isFilmsLoading = useAppSelector((state) => state.isFilmsDataLoading);
   const films = useAppSelector((state) => state.films);
   const [pagesCount, setPagesCount] = useState(1);
   useEffect(() => () =>{
     setPagesCount(1);
   }, [films]);
 
-  if (films2) {
+  if (isFilmsLoading) {
     return <Spinner/>;
   }
   return (
@@ -21,6 +21,7 @@ export default function FilmsList() {
         {films.slice(0, pagesCount * 8).map((film : FilmShort) => (
           <FilmCard
             key={film.id}
+            id={film.id}
             name={film.name}
             imageSrc={film.previewImage}
             link={film.previewVideoLink}
