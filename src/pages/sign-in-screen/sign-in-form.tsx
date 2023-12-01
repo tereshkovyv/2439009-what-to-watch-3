@@ -37,7 +37,11 @@ export default function SignInForm(){
         </div>
       </div>
       <div className="sign-in__submit">
-        <button className="sign-in__btn" type="submit" disabled={isLoginDataLoading}><AsyncComponent isLoading={isLoginDataLoading}>Sign in</AsyncComponent></button>
+        <button className="sign-in__btn" type="submit" disabled={isLoginDataLoading}>
+          <AsyncComponent isLoading={isLoginDataLoading}>
+            <div>Sign in</div>
+          </AsyncComponent>
+        </button>
       </div>
     </form>
   );
