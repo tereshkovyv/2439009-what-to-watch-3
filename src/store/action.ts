@@ -1,19 +1,4 @@
 import {createAction} from '@reduxjs/toolkit';
-import {ErrorData, Film, FilmComment, FilmShort} from '../types.ts';
-import {AppRoute, AuthorizationStatus} from '../consts.ts';
+import {AppRoute} from '../consts.ts';
 
-export const changeGenre = createAction(
-  'changeGenre',
-  (newGenre : string) => ({
-    payload : newGenre
-  }));
-
-export const loadFilms = createAction<FilmShort[]>('data/loadFilms');
-export const setFilmsDataLoadingStatus = createAction<boolean>('status/setFilmsDataLoadingStatus');
-export const changeAuthorizationStatus = createAction<AuthorizationStatus>('auth/changeAuthorizationStatus');
-export const setError = createAction<ErrorData | null>('data/setError');
 export const redirectToRoute = createAction<AppRoute | string>('router/redirectToRoute');
-export const setFilmData = createAction<Film | null>('data/setFilmData');
-export const setComments = createAction<FilmComment[]>('data/setComments');
-export const setCommentsLoadingStatus = createAction<boolean>('status/setCommentsLoadingStatus');
-export const setFilmDataLoadingStatus = createAction<boolean>('status/setFilmDataLoadingStatus');

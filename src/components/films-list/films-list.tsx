@@ -1,12 +1,17 @@
 import FilmCard from './film-card/film-card';
 import {useAppSelector} from '../../hooks';
-import {useEffect, useState} from 'react';
+import {memo, useEffect, useState} from 'react';
 import ShowMoreButton from './show-more-button.tsx';
-import Spinner from '../spinner/spinner.tsx';
+import Spinner from '../async-component/spinner.tsx';
 import {FilmShort} from '../../types.ts';
-export default function FilmsList() {
-  const isFilmsLoading = useAppSelector((state) => state.isFilmsDataLoading);
-  const films = useAppSelector((state) => state.films);
+import {getIsFilmsLoading} from '../../store/reducers/films/selectors.ts';
+
+export type FilmsListProps = {
+  films : FilmShort[];
+}
+
+function FilmsList({films} : FilmsListProps) {
+  const isFilmsLoading = useAppSelector(getIsFilmsLoading);
   const [pagesCount, setPagesCount] = useState(1);
   useEffect(() => () =>{
     setPagesCount(1);
@@ -33,3 +38,5 @@ export default function FilmsList() {
     </>
   );
 }
+
+export default memo(FilmsList);

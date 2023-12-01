@@ -8,7 +8,7 @@ export type FilmShort = {
     genre : string;
 }
 
-export type Film = {
+export type FilmFull = {
   id : string;
   name : string;
   posterImage : string;
@@ -26,23 +26,35 @@ export type Film = {
   isFavorite : boolean;
 }
 
-export type AuthData = {
+export type FilmPromo ={
+  id : string;
+  name : string;
+  posterImage : string;
+  backgroundImage : string;
+  videoLink : string;
+  genre : string;
+  released : string;
+  isFavorite : string;
+}
+
+export type LoginDto = {
     login: string;
     password: string;
 };
 
-export type UserData = {
-    id: number;
-    email: string;
-    token: string;
-};
+export type AppUser = {
+  name : string;
+  avatarUrl : string;
+  email : string;
+  token : string;
+}
 
 export type ErrorData = {
     property : string;
     messages : string[];
 }
 
-export type FilmComment = {
+export type AppComment = {
   id : string;
   date : string;
   user : string;
@@ -50,12 +62,23 @@ export type FilmComment = {
   rating : string;
 }
 
-export type FilmCommentBeingSent = {
+export type AppCommentDto = {
   id : string;
   comment : string;
   rating : number;
 }
 
+export type ChangeStatusDto = {
+  id : string;
+  status : string;
+}
+
+export type AppError = {
+  message : string;
+  details : ErrorData[];
+}
+
 export type AppDispatch = typeof store.dispatch;
 
 export type State = ReturnType<typeof store.getState>;
+

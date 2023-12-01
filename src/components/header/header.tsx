@@ -3,9 +3,11 @@ import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../consts.ts';
 import UnauthorizedUserBlock from './unauthorized-user-block.tsx';
 import {Link} from 'react-router-dom';
+import {getAuthorisationStatus} from '../../store/reducers/user/selectors.ts';
+import {memo} from 'react';
 
-export default function Header(){
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+function Header(){
+  const authorizationStatus = useAppSelector(getAuthorisationStatus);
   return(
     <header className="page-header film-card__head">
       <div className="logo">
@@ -19,3 +21,5 @@ export default function Header(){
     </header>
   );
 }
+
+export default memo(Header);
