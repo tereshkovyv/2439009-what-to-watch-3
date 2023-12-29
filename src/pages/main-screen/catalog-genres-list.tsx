@@ -10,7 +10,7 @@ export default function CatalogGenresList(props : CatalogGenresListProps){
   const [activeItemName, setActiveItemName] = useState('All genres');
   function onClick(genre : string){
     store.dispatch(changeGenre(genre));
-    store.dispatch(loadFilms());
+    store.dispatch(loadFilms);
     setActiveItemName(genre);
   }
   return (

@@ -4,6 +4,9 @@ import App from './components/app/app';
 import {genresListMock} from './mocks/main-page-menu.ts';
 import {Provider} from 'react-redux';
 import {store} from './store';
+import {fetchFilmsAction} from './store/api-actions.tsx';
+
+store.dispatch(fetchFilmsAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -20,7 +20,7 @@ export default function App({menuItems} : appProps){
         <Route path='/' element={<MainScreen menuItems={menuItems}/>} />
         <Route path='/login' element={<SignInScreen/>} />
         <Route path='/myList' element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen/></PrivateRoute>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen /></PrivateRoute>
         }
         />
         <Route path='/films/:id/*' element={<MovieScreen/> }/>
