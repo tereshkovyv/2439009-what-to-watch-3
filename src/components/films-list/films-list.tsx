@@ -12,12 +12,13 @@ export default function FilmsList({films} : filmsListProps) {
     <div className="catalog__films-list">
       {films.map((film : filmData) => (
         <FilmCard
-          key={film.name}
+          key={film.id}
           name={film.name}
-          imgSrc={film.imgSrc}
+          imageSrc={film.imgSrc}
           link={film.link}
           id={film.id}
-          onMouseEnter={(id : string) => setActiveFilmId(id)}
+          onMouseOver={(id : string) => setActiveFilmId(id)}
+          videoSrc="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         />))}
     </div>
   );

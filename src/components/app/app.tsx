@@ -11,6 +11,7 @@ import {filmData, filmsMock} from '../../mocks/films';
 import {CatalogGenresItemProps} from '../../pages/main-screen/catalog-genres-item.tsx';
 import {playerMock} from '../../mocks/playerMock.tsx';
 
+
 type appProps = {
   name : string;
   genre : string;
