@@ -1,101 +1,18 @@
-import FilmCard from '../../components/film-card/film-card';
+import FilmsList from '../../components/films-list/films-list';
+import {CatalogGenresItem, CatalogGenresItemProps} from './catalog-genres-item.tsx';
+import {filmData} from '../../mocks/films.ts';
 
-type filmData = {
-  name : string;
-  imgSrc : string;
-  link : string;
-}
-
-const films: filmData[] = [
-  {
-    name: 'Fantastic Beasts: The Crimes of Grindelwald',
-    imgSrc: 'img/fantastic-beasts-the-crimes-of-grindelwald.jpg',
-    link: 'fff'
-  }, {
-    name: 'Bohemian Rhapsody',
-    imgSrc: 'img/bohemian-rhapsody.jpg',
-    link: 'fff'
-  }, {
-    name: 'Macbeth',
-    imgSrc: 'img/macbeth.jpg',
-    link: 'fff'
-  }, {
-    name: 'Aviator',
-    imgSrc: 'img/aviator.jpg',
-    link: 'fff'
-  }, {
-    name: 'We need to talk about Kevin',
-    imgSrc: 'img/we-need-to-talk-about-kevin.jpg',
-    link: 'fff'
-  }, {
-    name: 'What We Do in the Shadows',
-    imgSrc: 'img/what-we-do-in-the-shadows.jpg',
-    link: 'fff'
-  }, {
-    name: 'Revenant',
-    imgSrc: 'img/revenant.jpg',
-    link: 'fff'
-  }, {
-    name: 'Johnny English',
-    imgSrc: 'img/johnny-english.jpg',
-    link: 'fff'
-  }, {
-    name: 'Shutter Island',
-    imgSrc: 'img/shutter-island.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Pulp Fiction',
-    imgSrc: 'img/pulp-fiction.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'No Country for Old Men',
-    imgSrc: 'img/no-country-for-old-men.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Snatch',
-    imgSrc: 'img/snatch.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Moonrise Kingdom',
-    imgSrc: 'img/moonrise-kingdom.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Seven Years in Tibet',
-    imgSrc: 'img/seven-years-in-tibet.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Midnight Special',
-    imgSrc: 'img/midnight-special.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'War of the Worlds',
-    imgSrc: 'img/war-of-the-worlds.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Dardjeeling Limited',
-    imgSrc: 'img/dardjeeling-limited.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Orlando',
-    imgSrc: 'img/orlando.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Mindhunter',
-    imgSrc: 'img/mindhunter.jpg',
-    link: 'film-page.html'
-  }, {
-    name: 'Midnight Special',
-    imgSrc: 'img/midnight-special.jpg',
-    link: 'film-page.html'
-  }
-];
 
 type MainScreenProps = {
   name : string;
   genre : string;
   releaseDate : string;
+  menuItems : CatalogGenresItemProps[];
+  films : filmData[];
 }
+
 export default function MainScreen(props : MainScreenProps){
+
   return(
     <>
       <section className="film-card">
@@ -166,43 +83,16 @@ export default function MainScreen(props : MainScreenProps){
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
+            {props.menuItems.map((itemProps) => (
+              <CatalogGenresItem
+                key = {itemProps.value}
+                isActive={itemProps.isActive}
+                href={itemProps.href}
+                value={itemProps.value}
+              />))}
           </ul>
 
-          <div className="catalog__films-list">
-
-            {films.map((film) => <FilmCard key={film.name} name={film.name} imgSrc={film.imgSrc} link={film.link}/>)}
-
-          </div>
+          <FilmsList films={props.films}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
