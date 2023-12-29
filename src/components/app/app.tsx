@@ -6,26 +6,21 @@ import MovieScreen from '../../pages/movie-screen/movie-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import {PrivateRoute, AuthorizationStatus} from '../private-route/private-route';
-import {filmData, filmsMock} from '../../mocks/films';
 import {playerMock} from '../../mocks/playerMock.ts';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen.tsx';
 
 type appProps = {
-  name : string;
-  genre : string;
-  films : filmData[];
-  releaseDate : string;
   menuItems : string[];
 }
 
-export default function App({name, genre, films, releaseDate, menuItems} : appProps){
+export default function App({menuItems} : appProps){
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainScreen name={name} genre={genre} releaseDate={releaseDate} films={films} menuItems={menuItems}/>} />
+        <Route path='/' element={<MainScreen menuItems={menuItems}/>} />
         <Route path='/login' element={<SignInScreen/>} />
         <Route path='/myList' element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen films={filmsMock}/></PrivateRoute>
+          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen/></PrivateRoute>
         }
         />
         <Route path='/films/:id/*' element={<MovieScreen/> }/>
