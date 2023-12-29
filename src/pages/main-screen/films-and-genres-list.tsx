@@ -35,8 +35,10 @@ export default function FilmsAndGenresList(){
   }
   return(
     <AsyncComponent isLoading={isFilmsLoading}>
-      <CatalogGenresList items={genres} onChange={(newGenre) => onChange(newGenre)}/>
-      <FilmsList films={films}/>
+      <>
+        <CatalogGenresList items={genres} onChange={(newGenre) => onChange(newGenre)}/>
+        <FilmsList films={films}/>
+      </>
     </AsyncComponent>
   );
 }
