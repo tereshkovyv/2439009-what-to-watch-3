@@ -1,6 +1,3 @@
-import {store} from '../../store';
-import {changeGenre, loadFilms} from '../../store/action.ts';
-
 export type CatalogGenresItemProps = {
   isActive : boolean;
   value : string;
@@ -9,8 +6,6 @@ export type CatalogGenresItemProps = {
 
 export function CatalogGenresItem(props : CatalogGenresItemProps){
   function onClick() {
-    store.dispatch(changeGenre(props.value));
-    store.dispatch(loadFilms);
     props.onclick();
   }
   return(
