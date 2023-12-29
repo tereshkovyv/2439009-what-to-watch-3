@@ -7,7 +7,6 @@ import Footer from '../../components/footer/footer.tsx';
 import Header from '../../components/header/header.tsx';
 import FilmCardMovieScreen from './film-card-movie-screen.tsx';
 import FilmsList from '../../components/films-list/films-list.tsx';
-import {filmsMock} from '../../mocks/films.ts';
 
 export type MovieScreenProps = {
   children : React.ReactNode;
@@ -58,7 +57,7 @@ export default function MovieScreen(){
 
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <FilmsList films={filmsMock.slice(0, 4)}/>
+            <FilmsList />
           </section>
         </section>
 
