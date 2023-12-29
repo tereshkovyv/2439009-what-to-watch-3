@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App name={'The Grand Budapest Hotel poster'} genre={'Drama'} releaseDate={'2014'} menuItems={genresListMock}/>
+      <App menuItems={genresListMock}/>
     </Provider>
   </React.StrictMode>
 

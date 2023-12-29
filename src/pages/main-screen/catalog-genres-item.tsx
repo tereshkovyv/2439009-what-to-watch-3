@@ -10,7 +10,7 @@ export type CatalogGenresItemProps = {
 export function CatalogGenresItem(props : CatalogGenresItemProps){
   function onClick() {
     store.dispatch(changeGenre(props.value));
-    store.dispatch(loadFilms());
+    store.dispatch(loadFilms);
     props.onclick();
   }
   return(
