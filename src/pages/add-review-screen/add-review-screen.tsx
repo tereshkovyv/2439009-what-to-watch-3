@@ -1,4 +1,4 @@
-import {AddReviewForm} from "../../components/add-review-form/add-review-form.tsx";
+import {AddReviewForm} from '../../components/add-review-form/add-review-form.tsx';
 
 export default function AddReviewScreen(){
   return(
