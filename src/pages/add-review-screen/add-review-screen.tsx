@@ -52,7 +52,6 @@ export default function AddReviewScreen(){
       <div className="add-review">
         <AddReviewForm />
       </div>
-
     </section>
   );
 }
