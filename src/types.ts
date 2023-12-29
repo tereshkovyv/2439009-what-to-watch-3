@@ -9,6 +9,7 @@ export type FilmShort = {
 }
 
 export type Film = {
+  id : string;
   name : string;
   posterImage : string;
   backgroundImage : string;
@@ -39,6 +40,20 @@ export type UserData = {
 export type ErrorData = {
     property : string;
     messages : string[];
+}
+
+export type FilmComment = {
+  id : string;
+  date : string;
+  user : string;
+  comment : string;
+  rating : string;
+}
+
+export type FilmCommentBeingSent = {
+  id : string;
+  comment : string;
+  rating : number;
 }
 
 export type AppDispatch = typeof store.dispatch;

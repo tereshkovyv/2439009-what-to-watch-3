@@ -1,7 +1,9 @@
 import {Link, useNavigate} from 'react-router-dom';
-import {AppRoute} from '../../consts.ts';
+import {AppRoute, AuthorizationStatus} from '../../consts.ts';
+import {useAppSelector} from '../../hooks';
 
 export default function FilmButtonsMainScreen(){
+  const isUserAuthenticated = useAppSelector((state) => state.authorizationStatus === AuthorizationStatus.Auth);
   const navigare = useNavigate();
   return(
     <div className="film-card__buttons">
@@ -18,7 +20,7 @@ export default function FilmButtonsMainScreen(){
         <span>My list</span>
         <span className="film-card__count">9</span>
       </button>
-      <Link to={`/films/${5}/addReview`} className="btn film-card__button">Add review</Link>
+      {isUserAuthenticated && <Link to={`/films/${5}/addReview`} className="btn film-card__button">Add review</Link>}
     </div>
   );
 }
