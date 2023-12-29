@@ -1,5 +1,5 @@
 export default function Spinner(){
   return (
-    <h1>Фильмы загружаются</h1>
+    <h3>Загрузка...</h3>
   );
 }

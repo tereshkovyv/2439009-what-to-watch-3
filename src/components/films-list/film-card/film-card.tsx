@@ -3,8 +3,6 @@ import VideoPlayer from './video-player.tsx';
 import FilmPoster from './film-poster.tsx';
 import {TimeoutId} from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 import {useNavigate} from 'react-router-dom';
-import {store} from '../../../store';
-import {setFilmData} from '../../../store/action.ts';
 
 type FilmCardProps = {
   id : string;
@@ -33,7 +31,6 @@ export default function FilmCard(props : FilmCardProps){
     setIsReadyToPreview(false);
   }
   function onClick(){
-    store.dispatch(setFilmData(null));
     navigate(`/films/${props.id}`);
   }
   return(

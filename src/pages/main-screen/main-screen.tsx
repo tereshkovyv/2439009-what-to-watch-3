@@ -1,50 +1,15 @@
-import FilmsList from '../../components/films-list/films-list';
-import Footer from '../../components/footer/footer.tsx';
-import Header from '../../components/header/header.tsx';
-import FilmCard from './film-card.tsx';
-import CatalogGenresList from './catalog-genres-list.tsx';
-import {store} from '../../store';
-import {fetchPromoFilmAction} from '../../store/api-actions.tsx';
-import {useAppSelector} from '../../hooks';
-import Spinner from '../../components/spinner/spinner.tsx';
-import {useEffect} from 'react';
+import CommonPage from '../../components/common-page/common-page.tsx';
+import MainScreenFilmCard from './main-screen-film-card.tsx';
+import FilmsAndGenresList from './films-and-genres-list.tsx';
 
-type MainScreenProps = {
-  menuItems : string[];
-}
-
-export default function MainScreen(props : MainScreenProps){
-  useEffect(() => {
-    store.dispatch(fetchPromoFilmAction());
-  }, []);
-  const isFilmLoading = useAppSelector((state) => state.isFilmLoading);
-  const filmData = useAppSelector((state) => state.film);
-  if (isFilmLoading){
-    return <Spinner/>;
-  }
+export default function MainScreen(){
   return(
     <>
-      <section className="film-card">
-        <div className="film-card__bg">
-          <img src={filmData?.backgroundImage} alt={filmData?.name}/>
-        </div>
+      <MainScreenFilmCard/>
 
-        <h1 className="visually-hidden">WTW</h1>
-        <Header/>
-        <FilmCard film={filmData}/>
-      </section>
-
-      <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-          <CatalogGenresList items={props.menuItems} />
-
-          <FilmsList/>
-        </section>
-
-        <Footer/>
-      </div>
+      <CommonPage>
+        <FilmsAndGenresList/>
+      </CommonPage>
     </>
   );
 }

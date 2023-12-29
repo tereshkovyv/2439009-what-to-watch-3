@@ -1,19 +1,11 @@
-import {useEffect} from 'react';
-import {store} from '../../store';
-import {fetchCommentsAction} from '../../store/api-actions.tsx';
-import {useAppSelector} from '../../hooks';
-import Spinner from '../../components/spinner/spinner.tsx';
+import {useAppSelector} from '../../../hooks';
+import Spinner from '../../../components/async-component/spinner.tsx';
 import Comment from './comment.tsx';
+import {getComments, getIsCommentsDownloading} from '../../../store/reducers/comments/selectors.ts';
 
 export default function MovieReviews(){
-  const filmId = useAppSelector((state) => state.film?.id);
-  useEffect(() => {
-    if (filmId !== undefined){
-      store.dispatch(fetchCommentsAction(filmId));
-    }
-  }, []);
-  const isCommentsLoading = useAppSelector((state) => state.isCommentsLoading);
-  const comments = useAppSelector((state) => state.comments);
+  const isCommentsLoading = useAppSelector(getIsCommentsDownloading);
+  const comments = useAppSelector(getComments);
   if(isCommentsLoading){
     return <Spinner/>;
   }

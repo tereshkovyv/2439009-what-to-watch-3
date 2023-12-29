@@ -1,8 +1,8 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
 import {getToken} from './token';
-import {ErrorData} from '../types.ts';
+import {AppError} from '../types.ts';
 import {store} from '../store';
-import {setError} from '../store/action.ts';
+import {setError} from '../store/reducers/error/error-slice.ts';
 
 const BACKEND_URL = 'https://13.design.pages.academy/wtw';
 const REQUEST_TIMEOUT = 5000;
@@ -24,22 +24,16 @@ export const createAPI = (): AxiosInstance => {
     },
   );
 
-  type Error = {
-      details : ErrorData[];
-  }
-
   api.interceptors.response.use(
     (response) => response,
-    (error: AxiosError<Error>) => {
+    (error: AxiosError<AppError>) => {
       if (error.response) {
-        const errorObject : Error = (error.response.data);
-        const detailMessage : ErrorData = errorObject.details[0];
-        store.dispatch(setError(detailMessage));
+        const errorObject : AppError = (error.response.data);
+        store.dispatch(setError(errorObject));
       }
       throw error;
     }
   );
-
 
   return api;
 };
