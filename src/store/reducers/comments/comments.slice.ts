@@ -3,13 +3,13 @@ import {NameSpace} from '../../../consts.ts';
 import {AppComment} from '../../../types.ts';
 import {fetchCommentsAction, sendCommentAction} from '../../api-actions/comments.ts';
 
-export type CommentsSliceInitialState = {
+export type CommentsData = {
   comments : AppComment[];
   isCommentsDownLoading : boolean;
   isCommentUploading : boolean;
 }
 
-const initialState : CommentsSliceInitialState = {
+const initialState : CommentsData = {
   comments : [],
   isCommentsDownLoading : false,
   isCommentUploading : false

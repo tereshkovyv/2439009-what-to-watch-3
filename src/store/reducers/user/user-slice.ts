@@ -3,14 +3,14 @@ import {createSlice} from '@reduxjs/toolkit';
 import {checkAuthAction, loginAction, logoutAction} from '../../api-actions/user.ts';
 import {AppUser} from '../../../types.ts';
 
-export type UserSliceInitialState = {
+export type UserData = {
   userData : AppUser | null;
   isLoginDataLoading : boolean;
   authorizationStatus: AuthorizationStatus;
 };
 
 
-const initialState: UserSliceInitialState = {
+const initialState: UserData = {
   userData : null,
   isLoginDataLoading : false,
   authorizationStatus: AuthorizationStatus.Unknown,

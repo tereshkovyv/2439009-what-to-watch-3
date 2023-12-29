@@ -12,12 +12,13 @@ type playerState = {
   timeRemaining : string;
 }
 
-
-function AddZero(value: number) {
-  return value >= 10 ? value.toString() : `0${value}`;
+function addZero(value: number) {
+  const LIMIT = 10;
+  return value >= LIMIT ? value.toString() : `0${value}`;
 }
-function FormatTime(time : number){
-  return `-${time >= 3600 ? `${AddZero(Math.round(time / 3600)) }:` : ''}${AddZero(Math.round(time / 60))}:${AddZero(time % 60)}`;
+
+function formatTime(time : number){
+  return `-${time >= 3600 ? `${addZero(Math.round(time / 3600)) }:` : ''}${addZero(Math.round(time / 60))}:${addZero(time % 60)}`;
 }
 
 export default function PlayerScreen(){
@@ -60,24 +61,24 @@ export default function PlayerScreen(){
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if(videoRef.current !== null){
+      if(videoRef.current){
         setPlayerState({...playerState,
           currentTime : Math.round(videoRef.current.currentTime * 100 / videoRef.current.duration),
           currentDownloadProgress : videoRef.current.buffered.end(0) * 100 / videoRef.current.duration,
-          timeRemaining : FormatTime(Math.round(videoRef.current.duration - videoRef.current.currentTime))
+          timeRemaining : formatTime(Math.round(videoRef.current.duration - videoRef.current.currentTime))
         });
       }
     }, 250);
     return () => clearInterval(timer);
   }, []);
 
-  if (film === null){
+  if (!film.film){
     return <h5>Ошибка загрузка данных</h5>;
   }
   return (
     <FullScreen handle={fullScreenHandle}>
       <div className="player">
-        <video ref={videoRef} src={film.videoLink} className="player__video" poster={film.posterImage}></video>
+        <video ref={videoRef} src={film.film.videoLink} className="player__video" poster={film.film.posterImage}></video>
 
         <button onClick={() => navigate(-1)} type="button" className="player__exit">Exit</button>
 

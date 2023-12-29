@@ -1,4 +1,3 @@
-import {ErrorData, FilmFull, FilmPromo, FilmShort} from '../../../types.ts';
 import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace} from '../../../consts.ts';
 import {
@@ -7,29 +6,29 @@ import {
   fetchPromoFilmAction,
   fetchSimilarFilmsAction
 } from '../../api-actions/films.ts';
-
-export type AppData = {
-  error : ErrorData | null;
-  films : FilmShort[];
-  isFilmsLoading : boolean;
-  film : FilmFull | null;
-  isFilmLoading : boolean;
-  promoFilm : FilmPromo | null;
-  isPromoFilmLoading : boolean;
-  similarFilms : FilmShort[];
-  isSimilarFilmsLoading : boolean;
-}
+import {AppData} from './types.tsx';
 
 const initialState: AppData = {
-  films : [],
-  promoFilm : null,
-  isPromoFilmLoading : false,
-  isFilmsLoading : false,
-  error : null,
-  film : null,
-  isFilmLoading : false,
-  similarFilms : [],
-  isSimilarFilmsLoading : false
+  films : {
+    films : [],
+    isFilmsLoading : false,
+    error : null
+  },
+  promoFilm : {
+    promoFilm : null,
+    isPromoFilmLoading : false,
+    error : null
+  },
+  film : {
+    film : null,
+    isFilmLoading : false,
+    error : null
+  },
+  similarFilms : {
+    similarFilms : [],
+    isSimilarFilmsLoading : false,
+    error : null
+  }
 };
 
 export const filmsSlice = createSlice({
@@ -39,32 +38,32 @@ export const filmsSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchFilmsAction.pending, (state) => {
-        state.isFilmsLoading = true;
+        state.films.isFilmsLoading = true;
       })
       .addCase(fetchFilmsAction.fulfilled, (state, action) => {
-        state.isFilmsLoading = false;
-        state.films = action.payload;
+        state.films.isFilmsLoading = false;
+        state.films.films = action.payload;
       })
       .addCase(fetchFilmAction.pending, (state) => {
-        state.isFilmLoading = true;
+        state.film.isFilmLoading = true;
       })
       .addCase(fetchFilmAction.fulfilled, (state, action) => {
-        state.isFilmLoading = false;
-        state.film = action.payload;
+        state.film.isFilmLoading = false;
+        state.film.film = action.payload;
       })
       .addCase(fetchPromoFilmAction.pending, (state) => {
-        state.isPromoFilmLoading = true;
+        state.promoFilm.isPromoFilmLoading = true;
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
-        state.isPromoFilmLoading = false;
-        state.promoFilm = action.payload;
+        state.promoFilm.isPromoFilmLoading = false;
+        state.promoFilm.promoFilm = action.payload;
       })
       .addCase(fetchSimilarFilmsAction.pending, (state) => {
-        state.isSimilarFilmsLoading = true;
+        state.similarFilms.isSimilarFilmsLoading = true;
       })
       .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
-        state.isSimilarFilmsLoading = false;
-        state.similarFilms = action.payload;
+        state.similarFilms.isSimilarFilmsLoading = false;
+        state.similarFilms.similarFilms = action.payload;
       });
   }
 });

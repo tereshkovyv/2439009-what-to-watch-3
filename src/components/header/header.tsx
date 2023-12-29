@@ -3,11 +3,11 @@ import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../consts.ts';
 import UnauthorizedUserBlock from './unauthorized-user-block.tsx';
 import {Link} from 'react-router-dom';
-import {getAuthorisationStatus} from '../../store/reducers/user/selectors.ts';
+import {getUserData} from '../../store/reducers/user/selectors.ts';
 import {memo} from 'react';
 
 function Header(){
-  const authorizationStatus = useAppSelector(getAuthorisationStatus);
+  const authorizationStatus = useAppSelector(getUserData).authorizationStatus;
   return(
     <header className="page-header film-card__head">
       <div className="logo">

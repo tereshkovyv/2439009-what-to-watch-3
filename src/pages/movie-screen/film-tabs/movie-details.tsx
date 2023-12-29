@@ -3,7 +3,7 @@ import {getFilm} from '../../../store/reducers/films/selectors.ts';
 
 export default function MovieDetails(){
   const filmData = useAppSelector(getFilm);
-  if (filmData === null) {
+  if (!filmData.film) {
     return <h5>Ошибка загрузки данных</h5>;
   }
   return (
@@ -11,12 +11,12 @@ export default function MovieDetails(){
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Director</strong>
-          <span className="film-card__details-value">{filmData.director}</span>
+          <span className="film-card__details-value">{filmData.film.director}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {filmData.starring.map((name) => <>{name}<br/></>)}
+            {filmData.film.starring.map((name) => <>{name}<br/></>)}
           </span>
         </p>
       </div>
@@ -24,15 +24,15 @@ export default function MovieDetails(){
       <div className="film-card__text-col">
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Run Time</strong>
-          <span className="film-card__details-value">{Math.floor(Number(filmData.runTime) / 60)}h {Number(filmData.runTime) % 60}m</span>
+          <span className="film-card__details-value">{Math.floor(Number(filmData.film.runTime) / 60)}h {Number(filmData.film.runTime) % 60}m</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Genre</strong>
-          <span className="film-card__details-value">{filmData.genre}</span>
+          <span className="film-card__details-value">{filmData.film.genre}</span>
         </p>
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Released</strong>
-          <span className="film-card__details-value">{filmData.released}</span>
+          <span className="film-card__details-value">{filmData.film.released}</span>
         </p>
       </div>
     </div>

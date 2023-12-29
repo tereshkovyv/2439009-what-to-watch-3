@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 import {store} from '../../store';
 import {fetchFilmAction} from '../../store/api-actions/films.ts';
 import {useAppSelector} from '../../hooks';
-import {getFilm, getIsFilmLoading} from '../../store/reducers/films/selectors.ts';
+import {getFilm} from '../../store/reducers/films/selectors.ts';
 import AsyncComponent from '../../components/async-component/async-component.tsx';
 
 export type AddReviewFilmCardProps = {
@@ -14,13 +14,15 @@ export default function AddReviewFilmCard({id} : AddReviewFilmCardProps){
   useEffect(() => {
     store.dispatch(fetchFilmAction(id));
   }, []);
-  const isFilmLoading = useAppSelector(getIsFilmLoading);
   const film = useAppSelector(getFilm);
+  if (!film.film) {
+    return <h5>Ошибка загрузки данных</h5>;
+  }
   return (
-    <AsyncComponent isLoading={isFilmLoading}>
+    <AsyncComponent isLoading={film.isFilmLoading}>
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src={film?.backgroundImage} alt={film?.name}/>
+          <img src={film.film.backgroundImage} alt={film.film.name}/>
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +30,7 @@ export default function AddReviewFilmCard({id} : AddReviewFilmCardProps){
         <Header/>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={film?.posterImage} alt={film?.name} width="218"
+          <img src={film.film.posterImage} alt={film.film.name} width="218"
             height="327"
           />
         </div>
