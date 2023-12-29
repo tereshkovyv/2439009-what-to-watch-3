@@ -1,7 +1,6 @@
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer.tsx';
 import Header from '../../components/header/header.tsx';
-er
 
 export default function MyListScreen(){
   return(
