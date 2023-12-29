@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import {filmsMock} from './mocks/films';
-import {genresListMock} from './mocks/main-page-menu.tsx';
+import {genresListMock} from './mocks/main-page-menu.ts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App name={'The Grand Budapest Hotel poster'} genre={'Drama'} releaseDate={'2014'} films={filmsMock} menuItems={genresListMock}/>
+    <App films={filmsMock} menuItems={genresListMock}/>
   </React.StrictMode>
 );

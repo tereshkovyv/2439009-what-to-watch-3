@@ -1,6 +1,6 @@
 import {useRef, useState} from 'react';
-import VideoPlayer from '../video-player/video-player.tsx';
-import FilmPoster from '../film-poster/film-poster.tsx';
+import VideoPlayer from './video-player.tsx';
+import FilmPoster from './film-poster.tsx';
 import {TimeoutId} from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 
 type FilmCardProps = {
