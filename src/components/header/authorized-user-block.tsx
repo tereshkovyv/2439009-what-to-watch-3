@@ -1,0 +1,20 @@
+import {store} from '../../store';
+import {logoutAction} from '../../store/api-actions.tsx';
+
+export default function AuthorizedUserBlock(){
+  function login(){
+    store.dispatch(logoutAction());
+  }
+  return(
+    <ul className="user-block">
+      <li className="user-block__item">
+        <div className="user-block__avatar">
+          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+        </div>
+      </li>
+      <li className="user-block__item">
+        <a className="user-block__link" onClick={login}>Sign out</a>
+      </li>
+    </ul>
+  );
+}

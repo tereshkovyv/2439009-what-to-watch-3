@@ -1,6 +1,7 @@
 import {store} from '../../store';
-import {changeGenre, loadFilms} from '../../store/action.ts';
+import {changeGenre} from '../../store/action.ts';
 import {useState} from 'react';
+import {fetchFilmsAction} from '../../store/api-actions.tsx';
 
 type CatalogGenresListProps = {
     items : string[];
@@ -10,7 +11,7 @@ export default function CatalogGenresList(props : CatalogGenresListProps){
   const [activeItemName, setActiveItemName] = useState('All genres');
   function onClick(genre : string){
     store.dispatch(changeGenre(genre));
-    store.dispatch(loadFilms);
+    store.dispatch(fetchFilmsAction());
     setActiveItemName(genre);
   }
   return (

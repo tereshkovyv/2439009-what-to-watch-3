@@ -1,6 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
-import {FilmShort} from '../types.ts';
-import {AuthorizationStatus} from '../components/private-route/private-route.tsx';
+import {ErrorData, Film, FilmShort} from '../types.ts';
+import {AppRoute, AuthorizationStatus} from '../consts.ts';
 
 export const changeGenre = createAction(
   'changeGenre',
@@ -9,7 +9,9 @@ export const changeGenre = createAction(
   }));
 
 export const loadFilms = createAction<FilmShort[]>('data/loadFilms');
-
-export const setFilmsDataLoadingStatus = createAction<boolean>('data/setFilmsDataLoadingStatus');
-
-export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
+export const setFilmsDataLoadingStatus = createAction<boolean>('status/setFilmsDataLoadingStatus');
+export const changeAuthorizationStatus = createAction<AuthorizationStatus>('auth/changeAuthorizationStatus');
+export const setError = createAction<ErrorData | null>('data/setError');
+export const redirectToRoute = createAction<AppRoute>('router/redirectToRoute');
+export const setFilmData = createAction<Film | null>('data/setFilmData');
+export const setFilmDataLoadingStatus = createAction<boolean>('status/setFilmDataLoadingStatus');

@@ -1,20 +1,24 @@
 import FilmButtonsMainScreen from './film-buttons-main-screen.tsx';
+import {Film} from '../../types.ts';
 
-export default function FilmCard(){
+export type FilmCardProps = {
+  film : Film | null;
+}
+export default function FilmCard({film} : FilmCardProps){
   return(
     <div className="film-card__wrap">
       <div className="film-card__info">
         <div className="film-card__poster">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+          <img src={film?.posterImage} alt={film?.name} width="218"
             height="327"
           />
         </div>
 
         <div className="film-card__desc">
-          <h2 className="film-card__title">props.name</h2>
+          <h2 className="film-card__title">{film?.name}</h2>
           <p className="film-card__meta">
-            <span className="film-card__genre">props.genre</span>
-            <span className="film-card__year">props.releaseDate</span>
+            <span className="film-card__genre">{film?.genre}</span>
+            <span className="film-card__year">{film?.released}</span>
           </p>
 
           <FilmButtonsMainScreen/>

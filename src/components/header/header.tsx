@@ -1,24 +1,21 @@
+import AuthorizedUserBlock from './authorized-user-block.tsx';
+import {useAppSelector} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../consts.ts';
+import UnauthorizedUserBlock from './unauthorized-user-block.tsx';
+import {Link} from 'react-router-dom';
+
 export default function Header(){
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   return(
     <header className="page-header film-card__head">
       <div className="logo">
-        <a className="logo__link">
+        <Link to={AppRoute.Root} className="logo__link">
           <span className="logo__letter logo__letter--1">W</span>
           <span className="logo__letter logo__letter--2">T</span>
           <span className="logo__letter logo__letter--3">W</span>
-        </a>
+        </Link>
       </div>
-
-      <ul className="user-block">
-        <li className="user-block__item">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
-        </li>
-        <li className="user-block__item">
-          <a className="user-block__link">Sign out</a>
-        </li>
-      </ul>
+      {authorizationStatus === AuthorizationStatus.Auth ? <AuthorizedUserBlock/> : <UnauthorizedUserBlock/>}
     </header>
   );
 }

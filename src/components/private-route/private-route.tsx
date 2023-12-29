@@ -1,18 +1,14 @@
 import SignInScreen from '../../pages/sign-in-screen/sign-in-screen';
-
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN'
-}
+import {AuthorizationStatus} from '../../consts.ts';
+import {useAppSelector} from '../../hooks';
 
 type PrivateRouteProps = {
-  authorizationStatus : AuthorizationStatus;
   children : JSX.Element;
 }
 
 export function PrivateRoute(props : PrivateRouteProps){
-  return props.authorizationStatus === AuthorizationStatus.Auth
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  return authorizationStatus === AuthorizationStatus.Auth
     ? props.children
     : <SignInScreen/>;
 }
