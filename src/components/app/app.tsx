@@ -12,18 +12,15 @@ import {playerMock} from '../../mocks/playerMock.ts';
 import AddReviewScreen from '../../pages/add-review-screen/add-review-screen.tsx';
 
 type appProps = {
-  name : string;
-  genre : string;
   films : filmData[];
-  releaseDate : string;
   menuItems : CatalogGenresItemProps[];
 }
 
-export default function App({name, genre, films, releaseDate, menuItems} : appProps){
+export default function App({films, menuItems} : appProps){
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<MainScreen name={name} genre={genre} releaseDate={releaseDate} films={films} menuItems={menuItems}/>} />
+        <Route path='/' element={<MainScreen films={films} menuItems={menuItems}/>} />
         <Route path='/login' element={<SignInScreen/>} />
         <Route path='/myList' element={
           <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}><MyListScreen films={filmsMock}/></PrivateRoute>

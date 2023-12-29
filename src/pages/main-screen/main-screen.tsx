@@ -7,9 +7,6 @@ import FilmCard from './film-card.tsx';
 
 
 type MainScreenProps = {
-  name : string;
-  genre : string;
-  releaseDate : string;
   menuItems : CatalogGenresItemProps[];
   films : filmData[];
 }

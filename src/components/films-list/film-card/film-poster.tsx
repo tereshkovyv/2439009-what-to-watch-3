@@ -1,5 +1,4 @@
 type FilmPosterProps = {
-  id : string;
   name : string;
   imgSrc : string;
   link : string;

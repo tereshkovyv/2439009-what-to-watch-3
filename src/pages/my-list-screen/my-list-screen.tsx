@@ -1,7 +1,7 @@
 import FilmsList from '../../components/films-list/films-list';
 import {filmData} from '../../mocks/films.ts';
-import Footer from "../../components/footer/footer.tsx";
-import Header from "../../components/header/header.tsx";
+import Footer from '../../components/footer/footer.tsx';
+import Header from '../../components/header/header.tsx';
 export type MyListScreenProps = {
   films : filmData[];
 }

@@ -10,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App name={'The Grand Budapest Hotel poster'} genre={'Drama'} releaseDate={'2014'} films={filmsMock} menuItems={genresListMock}/>
+    <App films={filmsMock} menuItems={genresListMock}/>
   </React.StrictMode>
 );
