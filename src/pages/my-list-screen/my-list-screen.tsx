@@ -7,7 +7,6 @@ import {useEffect} from 'react';
 import {store} from '../../store';
 import {fetchFavoriteAction} from '../../store/api-actions/favorite.ts';
 
-
 export default function MyListScreen(){
   useEffect(() => {
     store.dispatch(fetchFavoriteAction());
