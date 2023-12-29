@@ -54,13 +54,8 @@ export default function MovieScreen(){
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <section className="catalog catalog--like-this">
-            <h2 className="catalog__title">More like this</h2>
-            <FilmsList />
-          </section>
+          <FilmsList />
         </section>
-
         <Footer/>
       </div>
     </>
