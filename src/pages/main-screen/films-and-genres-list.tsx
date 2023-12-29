@@ -5,10 +5,10 @@ import {useEffect, useState} from 'react';
 import {store} from '../../store';
 import {fetchFilmsAction} from '../../store/api-actions/films.ts';
 import {useAppSelector} from '../../hooks';
-import {getFilms, getIsFilmsLoading} from '../../store/reducers/films/selectors.ts';
+import {getFilms} from '../../store/reducers/films/selectors.ts';
 import AsyncComponent from '../../components/async-component/async-component.tsx';
 
-function GetGenresList(films : FilmShort[]){
+function getGenresList(films : FilmShort[]){
   const set = new Set<string>();
   set.add('All genres');
   for (const film of films){
@@ -21,20 +21,19 @@ export default function FilmsAndGenresList(){
   useEffect(() => {
     store.dispatch(fetchFilmsAction());
   }, []);
-  const isFilmsLoading = useAppSelector(getIsFilmsLoading);
   const sourceFilms = useAppSelector(getFilms);
-  const genres = GetGenresList(sourceFilms);
-  const [films, setFilms] = useState(sourceFilms);
+  const genres = getGenresList(sourceFilms.films);
+  const [films, setFilms] = useState(sourceFilms.films);
 
   function onChange(genre : string){
     if (genre === 'All genres'){
-      setFilms(sourceFilms);
+      setFilms(sourceFilms.films);
     } else {
-      setFilms(sourceFilms.filter((item) => item.genre === genre));
+      setFilms(sourceFilms.films.filter((item) => item.genre === genre));
     }
   }
   return(
-    <AsyncComponent isLoading={isFilmsLoading}>
+    <AsyncComponent isLoading={sourceFilms.isFilmsLoading}>
       <>
         <CatalogGenresList items={genres} onChange={(newGenre) => onChange(newGenre)}/>
         <FilmsList films={films}/>

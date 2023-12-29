@@ -1,11 +1,8 @@
 import {NameSpace} from '../../../consts.ts';
-import {FilmFull, FilmPromo, FilmShort, State} from '../../../types.ts';
+import {State} from '../../../types.ts';
+import {FilmData, FilmsData, PromoFilmData, SimilarFilmsData} from './types.tsx';
 
-export const getFilms = (state : State): FilmShort[]=> state[NameSpace.Films].films;
-export const getIsFilmsLoading = (state : State): boolean => state[NameSpace.Films].isFilmsLoading;
-export const getFilm = (state : State): FilmFull | null => state[NameSpace.Films].film;
-export const getIsFilmLoading = (state : State): boolean => state[NameSpace.Films].isFilmLoading;
-export const getPromoFilm = (state : State): FilmPromo | null => state[NameSpace.Films].promoFilm;
-export const getIsPromoFilmLoading = (state : State): boolean => state[NameSpace.Films].isPromoFilmLoading;
-export const getSimilarFilms = (state : State): FilmShort[] => state[NameSpace.Films].similarFilms;
-export const getIsSimilarFilmsLoading = (state : State): boolean => state[NameSpace.Films].isSimilarFilmsLoading;
+export const getFilms = (state : State): FilmsData => state[NameSpace.Films].films;
+export const getFilm = (state : State): FilmData => state[NameSpace.Films].film;
+export const getPromoFilm = (state : State): PromoFilmData => state[NameSpace.Films].promoFilm;
+export const getSimilarFilms = (state : State): SimilarFilmsData => state[NameSpace.Films].similarFilms;

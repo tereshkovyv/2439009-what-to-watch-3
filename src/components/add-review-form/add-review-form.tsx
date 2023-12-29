@@ -7,6 +7,7 @@ import {sendCommentAction} from '../../store/api-actions/comments.ts';
 export type AddReviewFormProps = {
   filmId : string;
 }
+const STARS_COUNT = 10;
 
 export function AddReviewForm({filmId} : AddReviewFormProps) {
   const [reviewData, setReviewData] = useState({rating : 0, text : ''});
@@ -29,6 +30,7 @@ export function AddReviewForm({filmId} : AddReviewFormProps) {
     setReviewData({...reviewData, rating: 10 - i});
     validateForm();
   }
+
   function textareaOnChange(event : React.ChangeEvent<HTMLTextAreaElement>){
     setReviewData({...reviewData, text: event.target.value});
     validateForm();
@@ -38,8 +40,8 @@ export function AddReviewForm({filmId} : AddReviewFormProps) {
       <form onSubmit={onSubmit} className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
-            {Array.from(Array(10).keys()).map((i) => (
-              <Star value={10 - i} key={10 - i} onClick={() => ratingOnChange(i)} />
+            {Array.from(Array(STARS_COUNT).keys()).map((i) => (
+              <Star value={STARS_COUNT - i} key={STARS_COUNT - i} onClick={() => ratingOnChange(i)} />
             ))}
           </div>
         </div>

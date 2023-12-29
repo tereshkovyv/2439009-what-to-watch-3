@@ -7,9 +7,8 @@ export type AsyncComponentProps = {
 }
 
 export default function AsyncComponent({isLoading, children} : AsyncComponentProps){
-  if (isLoading){
+  if (isLoading) {
     return <Spinner/>;
-  } else {
-    return (children);
   }
+  return (children);
 }

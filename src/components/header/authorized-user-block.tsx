@@ -18,7 +18,7 @@ export default function AuthorizedUserBlock(){
       <li className="user-block__item" >
         <Link to={'/myList'}>
           <div className="user-block__avatar">
-            <img src={userData?.avatarUrl} alt="User avatar" width="63" height="63"/>
+            <img src={userData.userData?.avatarUrl} alt="User avatar" width="63" height="63"/>
           </div>
         </Link>
       </li>

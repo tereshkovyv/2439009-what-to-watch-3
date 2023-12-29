@@ -4,14 +4,14 @@ import {memo, useEffect, useState} from 'react';
 import ShowMoreButton from './show-more-button.tsx';
 import Spinner from '../async-component/spinner.tsx';
 import {FilmShort} from '../../types.ts';
-import {getIsFilmsLoading} from '../../store/reducers/films/selectors.ts';
+import {getFilms} from '../../store/reducers/films/selectors.ts';
 
 export type FilmsListProps = {
   films : FilmShort[];
 }
 
 function FilmsList({films} : FilmsListProps) {
-  const isFilmsLoading = useAppSelector(getIsFilmsLoading);
+  const isFilmsLoading = useAppSelector(getFilms).isFilmsLoading;
   const [pagesCount, setPagesCount] = useState(1);
   useEffect(() => () =>{
     setPagesCount(1);

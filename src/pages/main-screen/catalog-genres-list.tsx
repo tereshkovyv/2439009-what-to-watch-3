@@ -1,12 +1,14 @@
 import {useState} from 'react';
 
+const ALL_GENRES_NAME = 'All genres';
+
 type CatalogGenresListProps = {
     onChange : (genre : string) => void;
     items : string[];
 }
 
 export default function CatalogGenresList(props : CatalogGenresListProps){
-  const [activeItemName, setActiveItemName] = useState('All genres');
+  const [activeItemName, setActiveItemName] = useState(ALL_GENRES_NAME);
   function onClick(genre : string){
     setActiveItemName(genre);
     props.onChange(genre);

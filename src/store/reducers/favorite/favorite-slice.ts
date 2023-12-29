@@ -3,13 +3,13 @@ import {NameSpace} from '../../../consts.ts';
 import {FilmShort} from '../../../types.ts';
 import {fetchFavoriteAction, sendNewStatusAction} from '../../api-actions/favorite.ts';
 
-export type FavoriteSliceInitialState = {
+export type FavoriteFilmsData = {
   content : FilmShort[];
   isContentLoading : boolean;
   isChangeStatusLoading : boolean;
 }
 
-const initialState : FavoriteSliceInitialState = {
+const initialState : FavoriteFilmsData = {
   content : [],
   isContentLoading : false,
   isChangeStatusLoading : false
