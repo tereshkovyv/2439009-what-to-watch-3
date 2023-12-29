@@ -34,7 +34,7 @@ export default function FilmCard(props : FilmCardProps){
     <article onMouseEnter={onMouseEnterHandler} onMouseLeave={onMouseLeaveHandler} className="small-film-card catalog__films-card">
       {isReadyToPreview && isActive
         ? <VideoPlayer videoSrc={props.videoSrc} posterSrc={props.imageSrc} />
-        : <FilmPoster id={props.id} name={props.name} imgSrc={props.imageSrc} link={props.link}/>}
+        : <FilmPoster name={props.name} imgSrc={props.imageSrc} link={props.link}/>}
     </article>
   );
 }
