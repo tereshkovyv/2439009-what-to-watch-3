@@ -1,10 +1,10 @@
-import Header from '../../components/header/header.tsx';
+import Header from '../../../components/header/header.tsx';
 import {useEffect} from 'react';
-import {store} from '../../store';
-import {fetchFilmAction} from '../../store/api-actions/films.ts';
-import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/reducers/films/selectors.ts';
-import AsyncComponent from '../../components/async-component/async-component.tsx';
+import {store} from '../../../store';
+import {fetchFilmAction} from '../../../store/api-actions/films.ts';
+import {useAppSelector} from '../../../hooks';
+import {getFilm} from '../../../store/reducers/films/selectors.ts';
+import AsyncComponent from '../../../components/async-component/async-component.tsx';
 
 export type AddReviewFilmCardProps = {
   id : string;
@@ -13,7 +13,7 @@ export type AddReviewFilmCardProps = {
 export default function AddReviewFilmCard({id} : AddReviewFilmCardProps){
   useEffect(() => {
     store.dispatch(fetchFilmAction(id));
-  }, []);
+  }, [id]);
   const film = useAppSelector(getFilm);
   if (!film.film) {
     return <h5>Ошибка загрузки данных</h5>;

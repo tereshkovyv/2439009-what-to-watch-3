@@ -1,11 +1,11 @@
-import SignInError from './sign-in-error.tsx';
-import AsyncComponent from '../../components/async-component/async-component.tsx';
-import {useAppSelector} from '../../hooks';
-import {getError} from '../../store/reducers/error/selectors.ts';
+import SignInError from '../sign-in-error/sign-in-error.tsx';
+import AsyncComponent from '../../../components/async-component/async-component.tsx';
+import {useAppSelector} from '../../../hooks';
+import {getError} from '../../../store/reducers/error/selectors.ts';
 import {FormEvent, useState} from 'react';
-import {getUserData} from '../../store/reducers/user/selectors.ts';
-import {store} from '../../store';
-import {checkAuthAction, loginAction} from '../../store/api-actions/user.ts';
+import {getUserData} from '../../../store/reducers/user/selectors.ts';
+import {store} from '../../../store';
+import {checkAuthAction, loginAction} from '../../../store/api-actions/user.ts';
 
 type FormState = {
   email : string;
@@ -17,14 +17,14 @@ export default function SignInForm(){
 
   const [formData, setFormData] = useState<FormState>({email : '', password : ''});
   const userData = useAppSelector(getUserData);
-  function onSubmit(evt : FormEvent<HTMLFormElement>) {
+  function handleFormSubmission(evt : FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     store.dispatch(loginAction({login : formData.email, password : formData.password}));
     store.dispatch(checkAuthAction());
   }
 
   return(
-    <form onSubmit={onSubmit} className="sign-in__form" >
+    <form onSubmit={handleFormSubmission} className="sign-in__form" >
       {errors !== null && <SignInError/>}
       <div className="sign-in__fields">
         <div className="sign-in__field">

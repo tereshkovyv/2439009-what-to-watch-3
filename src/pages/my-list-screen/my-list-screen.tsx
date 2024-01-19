@@ -17,7 +17,7 @@ export default function MyListScreen(){
       <Header/>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <FilmsList films={films.content}/>
+        <FilmsList films={films.favoriteFilms}/>
       </section>
       <Footer/>
     </div>

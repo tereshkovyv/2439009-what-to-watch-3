@@ -1,18 +1,18 @@
 import React, {FormEvent, useState} from 'react';
-import {Star} from './star.tsx';
+import {Star} from './star/star.tsx';
 import {store} from '../../store';
 import {AppCommentDto} from '../../types.ts';
 import {sendCommentAction} from '../../store/api-actions/comments.ts';
+import {MAXIMAL_REVIEW_TEXT_LENGTH, MINIMAL_REVIEW_TEXT_LENGTH, STARS_COUNT} from './consts.tsx';
 
 export type AddReviewFormProps = {
   filmId : string;
 }
-const STARS_COUNT = 10;
 
 export function AddReviewForm({filmId} : AddReviewFormProps) {
   const [reviewData, setReviewData] = useState({rating : 0, text : ''});
   const [isAbleToSend, setIsAbleToSend] = useState(false);
-  function onSubmit(evt: FormEvent<HTMLFormElement>){
+  function handleFormSubmission(evt: FormEvent<HTMLFormElement>){
     evt.preventDefault();
     if (filmId){
       const dataToBeingSent: AppCommentDto = {
@@ -24,24 +24,24 @@ export function AddReviewForm({filmId} : AddReviewFormProps) {
     }
   }
   function validateForm(){
-    setIsAbleToSend(reviewData.rating !== 0 && reviewData.text.length >= 50 && reviewData.text.length <= 400);
+    setIsAbleToSend(reviewData.rating !== 0 && reviewData.text.length >= MINIMAL_REVIEW_TEXT_LENGTH && reviewData.text.length <= MAXIMAL_REVIEW_TEXT_LENGTH);
   }
-  function ratingOnChange(i : number){
+  function handleRatingChange(i : number){
     setReviewData({...reviewData, rating: 10 - i});
     validateForm();
   }
 
-  function textareaOnChange(event : React.ChangeEvent<HTMLTextAreaElement>){
+  function handleTextChange(event : React.ChangeEvent<HTMLTextAreaElement>){
     setReviewData({...reviewData, text: event.target.value});
     validateForm();
   }
   return (
     <div className="add-review">
-      <form onSubmit={onSubmit} className="add-review__form">
+      <form onSubmit={handleFormSubmission} className="add-review__form">
         <div className="rating">
           <div className="rating__stars">
             {Array.from(Array(STARS_COUNT).keys()).map((i) => (
-              <Star value={STARS_COUNT - i} key={STARS_COUNT - i} onClick={() => ratingOnChange(i)} />
+              <Star value={STARS_COUNT - i} key={STARS_COUNT - i} onClick={() => handleRatingChange(i)} />
             ))}
           </div>
         </div>
@@ -49,7 +49,7 @@ export function AddReviewForm({filmId} : AddReviewFormProps) {
         <div className="add-review__text">
           <textarea className="add-review__textarea" name="review-text" id="review-text"
             placeholder="Review text"
-            onChange={(event) => textareaOnChange(event)}
+            onChange={(event) => handleTextChange(event)}
           >
           </textarea>
           <div className="add-review__submit">

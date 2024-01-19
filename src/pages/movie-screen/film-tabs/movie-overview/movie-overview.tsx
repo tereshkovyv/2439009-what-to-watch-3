@@ -1,11 +1,18 @@
-import {useAppSelector} from '../../../hooks';
-import {getFilm} from '../../../store/reducers/films/selectors.ts';
-import {rates} from './consts.tsx';
+import {useAppSelector} from '../../../../hooks';
+import {getFilm} from '../../../../store/reducers/films/selectors.ts';
+
+const RATES = new Map<number, string>([
+  [0 , 'Bad'],
+  [3 , 'Normal'],
+  [5 , 'Good'],
+  [8 , 'Very good'],
+  [10 , 'Awesome']
+]);
 
 function getRateDescription(rating : string){
   const numberString = Number(rating);
   let answer = '';
-  for (const rate of rates){
+  for (const rate of RATES){
     if (numberString > rate[0]){
       answer = rate[1];
     }

@@ -1,4 +1,4 @@
-import Spinner from './spinner.tsx';
+import Spinner from './spinner/spinner.tsx';
 import React from 'react';
 
 export type AsyncComponentProps = {

@@ -1,7 +1,7 @@
-import {useAppSelector} from '../../../hooks';
-import Comment from './comment.tsx';
-import {getCommentsData} from '../../../store/reducers/comments/selectors.ts';
-import AsyncComponent from '../../../components/async-component/async-component.tsx';
+import {useAppSelector} from '../../../../hooks';
+import Comment from '../comment/comment.tsx';
+import {getCommentsData} from '../../../../store/reducers/comments/selectors.ts';
+import AsyncComponent from '../../../../components/async-component/async-component.tsx';
 
 export default function MovieReviews(){
   const comments = useAppSelector(getCommentsData);

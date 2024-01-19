@@ -9,7 +9,7 @@ type CatalogGenresListProps = {
 
 export default function CatalogGenresList(props : CatalogGenresListProps){
   const [activeItemName, setActiveItemName] = useState(ALL_GENRES_NAME);
-  function onClick(genre : string){
+  function handleGenreChoosing(genre : string){
     setActiveItemName(genre);
     props.onChange(genre);
   }
@@ -17,7 +17,7 @@ export default function CatalogGenresList(props : CatalogGenresListProps){
     <ul className="catalog__genres-list">
       {props.items.map((itemProps) => (
         <li key={itemProps} className={`catalog__genres-item catalog__genres-item${ itemProps === activeItemName ? '--active' : ''}`}>
-          <a onClick={() => onClick(itemProps)} className="catalog__genres-link" >{itemProps}</a>
+          <a onClick={() => handleGenreChoosing(itemProps)} className="catalog__genres-link" >{itemProps}</a>
         </li>
       ))}
     </ul>

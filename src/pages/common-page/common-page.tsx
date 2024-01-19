@@ -1,4 +1,4 @@
-import Footer from '../footer/footer.tsx';
+import Footer from '../../components/footer/footer.tsx';
 import React from 'react';
 
 export type CommonPageProps = {

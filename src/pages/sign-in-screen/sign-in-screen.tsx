@@ -1,6 +1,6 @@
 import Footer from '../../components/footer/footer.tsx';
 import Header from '../../components/header/header.tsx';
-import SignInForm from './sign-in-form.tsx';
+import SignInForm from './sign-in-form/sign-in-form.tsx';
 
 export default function SignInScreen(){
   return (

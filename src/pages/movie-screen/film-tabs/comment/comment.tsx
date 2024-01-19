@@ -12,7 +12,7 @@ export default function Comment(props : CommentProps){
         <p>{props.comment}</p>
         <footer className="review__details">
           <cite className="review__author">{props.user}</cite>
-          <time className="review__date" dateTime="2015-11-18">{props.date}</time>
+          <time className="review__date" dateTime={props.date}>{props.date}</time>
         </footer>
       </blockquote>
       <div className="review__rating">{props.rating}</div>

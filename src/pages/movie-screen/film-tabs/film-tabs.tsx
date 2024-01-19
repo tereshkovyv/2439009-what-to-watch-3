@@ -1,17 +1,12 @@
 import * as cn from 'classnames';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
-import MovieOverview from './movie-overview.tsx';
-import MovieDetails from './movie-details.tsx';
-import MovieReviews from './movie-reviews.tsx';
+import MovieOverview from './movie-overview/movie-overview.tsx';
+import MovieDetails from './movie-details/movie-details.tsx';
+import MovieReviews from './movie-reviews/movie-reviews.tsx';
+import {FilmTabElement} from './types.tsx';
 
-export enum FilmTabElement {
-  'Overview',
-  'Details',
-  'Reviews'
-}
-
-const elements:FilmTabElement[] = [
+const ELEMENTS: FilmTabElement[] = [
   FilmTabElement.Overview,
   FilmTabElement.Details,
   FilmTabElement.Reviews
@@ -24,7 +19,7 @@ export default function FilmTabs(){
       <div className="film-card__desc">
         <nav className="film-nav film-card__nav">
           <ul className="film-nav__list">
-            {elements.map((element) => (
+            {ELEMENTS.map((element) => (
               <li key={element} className={cn(
                 'film-nav__item',
                 {'film-nav__item--active' : element === activeElement}

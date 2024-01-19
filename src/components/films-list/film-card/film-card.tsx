@@ -1,6 +1,6 @@
 import {useRef, useState} from 'react';
-import VideoPlayer from './video-player.tsx';
-import FilmPoster from './film-poster.tsx';
+import VideoPlayer from './video-player/video-player.tsx';
+import FilmPoster from './film-poster/film-poster.tsx';
 import {TimeoutId} from '@reduxjs/toolkit/dist/query/core/buildMiddleware/types';
 import {useNavigate} from 'react-router-dom';
 
@@ -17,7 +17,7 @@ export default function FilmCard(props : FilmCardProps){
   const [isReadyToPreview, setIsReadyToPreview] = useState(false);
   const timer = useRef<TimeoutId | null>(null);
   const navigate = useNavigate();
-  function onMouseEnterHandler(){
+  function handleMouseEnter(){
     if (timer.current !== null){
       clearTimeout(timer.current);
     }
@@ -26,18 +26,18 @@ export default function FilmCard(props : FilmCardProps){
       setIsReadyToPreview(true);
     }, 1000);
   }
-  function onMouseLeaveHandler(){
+  function handleMouseLeave(){
     setIsActive(false);
     setIsReadyToPreview(false);
   }
-  function onClick(){
+  function handleMouseClick(){
     navigate(`/films/${props.id}`);
   }
   return(
     <article
-      onMouseEnter={onMouseEnterHandler}
-      onMouseLeave={onMouseLeaveHandler}
-      onClick={onClick}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleMouseClick}
       className="small-film-card catalog__films-card"
     >
       {isReadyToPreview && isActive

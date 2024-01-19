@@ -14,8 +14,9 @@ export enum AppRoute {
   Player = '/player',
   MyList = '/myList',
   Login = '/login',
-  Logout = '/logout',
   Root = '/',
+  Films = '/films',
+  AddReview = '/addReview'
 }
 
 export enum NameSpace {

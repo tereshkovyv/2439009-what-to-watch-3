@@ -1,13 +1,13 @@
-import Header from '../../components/header/header.tsx';
-import FilmTabs from './film-tabs/film-tabs.tsx';
-import {useAppSelector} from '../../hooks';
-import {getFilm} from '../../store/reducers/films/selectors.ts';
+import Header from '../../../components/header/header.tsx';
+import FilmTabs from '../film-tabs/film-tabs.tsx';
+import {useAppSelector} from '../../../hooks';
+import {getFilm} from '../../../store/reducers/films/selectors.ts';
 import {useEffect} from 'react';
-import {store} from '../../store';
-import {fetchFilmAction} from '../../store/api-actions/films.ts';
-import ButtonsPanel from '../../components/buttons-panel/buttons-panel.tsx';
-import {fetchCommentsAction} from '../../store/api-actions/comments.ts';
-import AsyncComponent from '../../components/async-component/async-component.tsx';
+import {store} from '../../../store';
+import {fetchFilmAction} from '../../../store/api-actions/films.ts';
+import ButtonsPanel from '../../../components/buttons-panel/buttons-panel.tsx';
+import {fetchCommentsAction} from '../../../store/api-actions/comments.ts';
+import AsyncComponent from '../../../components/async-component/async-component.tsx';
 
 export type MovieScreenFilmCardProps = {
   id : string;
@@ -18,7 +18,7 @@ export default function MovieScreenFilmCard({id} : MovieScreenFilmCardProps){
   useEffect(() => {
     store.dispatch(fetchFilmAction(id));
     store.dispatch(fetchCommentsAction(id));
-  }, []);
+  }, [id]);
 
   if (!film.film) {
     return <h5>Ошибка загрузки данных</h5>;

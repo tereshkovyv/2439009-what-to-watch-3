@@ -1,0 +1,3 @@
+export const STARS_COUNT = 10;
+export const MINIMAL_REVIEW_TEXT_LENGTH = 50;
+export const MAXIMAL_REVIEW_TEXT_LENGTH = 400;

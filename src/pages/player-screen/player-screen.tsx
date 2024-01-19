@@ -36,11 +36,11 @@ export default function PlayerScreen(){
     if (id !== undefined){
       store.dispatch(fetchFilmAction(id));
     }
-  }, []);
+  }, [id]);
   const film = useAppSelector(getFilm);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  function onPlay(){
+  function handlePlayButtonClick(){
     if(videoRef.current){
       if(isPlaying){
         videoRef.current.pause();
@@ -50,7 +50,8 @@ export default function PlayerScreen(){
       setIsPlaying(!isPlaying);
     }
   }
-  function onFullScreenPressed(){
+  function handleFullScreenButtonClicked
+  (){
     if (isFillScreenMode){
       fullScreenHandle.exit();
     } else {
@@ -70,7 +71,7 @@ export default function PlayerScreen(){
       }
     }, 250);
     return () => clearInterval(timer);
-  }, []);
+  }, [playerState]);
 
   if (!film.film){
     return <h5>Ошибка загрузка данных</h5>;
@@ -92,7 +93,7 @@ export default function PlayerScreen(){
           </div>
 
           <div className="player__controls-row">
-            <button type="button" className="player__play" onClick={onPlay}>
+            <button type="button" className="player__play" onClick={handlePlayButtonClick}>
               <svg viewBox="0 0 19 19" width="19" height="19">
                 {isPlaying ? <use xlinkHref="#pause"></use> : <use xlinkHref="#play-s"></use>}
               </svg>
@@ -100,7 +101,7 @@ export default function PlayerScreen(){
             </button>
             <div className="player__name">Transpotting</div>
 
-            <button onClick={onFullScreenPressed} type="button" className="player__full-screen">
+            <button onClick={handleFullScreenButtonClicked} type="button" className="player__full-screen">
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="#full-screen"></use>
               </svg>

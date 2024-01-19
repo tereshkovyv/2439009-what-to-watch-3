@@ -1,5 +1,5 @@
-import {useAppSelector} from '../../../hooks';
-import {getFilm} from '../../../store/reducers/films/selectors.ts';
+import {useAppSelector} from '../../../../hooks';
+import {getFilm} from '../../../../store/reducers/films/selectors.ts';
 
 export default function MovieDetails(){
   const filmData = useAppSelector(getFilm);
@@ -16,7 +16,7 @@ export default function MovieDetails(){
         <p className="film-card__details-item">
           <strong className="film-card__details-name">Starring</strong>
           <span className="film-card__details-value">
-            {filmData.film.starring.map((name) => <>{name}<br/></>)}
+            {filmData.film.starring.map((name) => <span key={name}>{name}<br/></span>)}
           </span>
         </p>
       </div>

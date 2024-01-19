@@ -1,5 +1,5 @@
 import Header from '../../components/header/header.tsx';
-import CommonPage from '../../components/common-page/common-page.tsx';
+import CommonPage from '../common-page/common-page.tsx';
 
 export default function NotFoundPage(){
   return(

@@ -4,14 +4,14 @@ import {FilmShort} from '../../../types.ts';
 import {fetchFavoriteAction, sendNewStatusAction} from '../../api-actions/favorite.ts';
 
 export type FavoriteFilmsData = {
-  content : FilmShort[];
-  isContentLoading : boolean;
+  favoriteFilms : FilmShort[];
+  isFavoriteFilmsLoading : boolean;
   isChangeStatusLoading : boolean;
 }
 
 const initialState : FavoriteFilmsData = {
-  content : [],
-  isContentLoading : false,
+  favoriteFilms : [],
+  isFavoriteFilmsLoading : false,
   isChangeStatusLoading : false
 };
 
@@ -22,11 +22,11 @@ export const favoriteSlice = createSlice({
   extraReducers(builder){
     builder
       .addCase(fetchFavoriteAction.pending, (state) => {
-        state.isContentLoading = true;
+        state.isFavoriteFilmsLoading = true;
       })
       .addCase(fetchFavoriteAction.fulfilled, (state, action) => {
-        state.content = action.payload;
-        state.isContentLoading = false;
+        state.favoriteFilms = action.payload;
+        state.isFavoriteFilmsLoading = false;
       })
       .addCase(sendNewStatusAction.fulfilled, (state)=>{
         fetchFavoriteAction();

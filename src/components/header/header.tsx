@@ -1,13 +1,18 @@
-import AuthorizedUserBlock from './authorized-user-block.tsx';
+import AuthorizedUserBlock from './authorized-user-block/authorized-user-block.tsx';
 import {useAppSelector} from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../consts.ts';
-import UnauthorizedUserBlock from './unauthorized-user-block.tsx';
+import UnauthorizedUserBlock from './unauthorized-user-block/unauthorized-user-block.tsx';
 import {Link} from 'react-router-dom';
 import {getUserData} from '../../store/reducers/user/selectors.ts';
-import {memo} from 'react';
+import {useEffect} from 'react';
+import {store} from '../../store';
+import {checkAuthAction} from '../../store/api-actions/user.ts';
 
-function Header(){
+export default function Header(){
   const authorizationStatus = useAppSelector(getUserData).authorizationStatus;
+  useEffect(() => {
+    store.dispatch(checkAuthAction());
+  }, [authorizationStatus]);
   return(
     <header className="page-header film-card__head">
       <div className="logo">
@@ -22,4 +27,3 @@ function Header(){
   );
 }
 
-export default memo(Header);
