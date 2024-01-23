@@ -65,7 +65,7 @@ export default function PlayerScreen(){
       if(videoRef.current){
         setPlayerState({...playerState,
           currentTime : Math.round(videoRef.current.currentTime * 100 / videoRef.current.duration),
-          currentDownloadProgress : videoRef.current.buffered.end(0) * 100 / videoRef.current.duration,
+          currentDownloadProgress : videoRef.current.buffered.length > 0 ? videoRef.current.buffered.end(0) * 100 / videoRef.current.duration : 0,
           timeRemaining : formatTime(Math.round(videoRef.current.duration - videoRef.current.currentTime))
         });
       }

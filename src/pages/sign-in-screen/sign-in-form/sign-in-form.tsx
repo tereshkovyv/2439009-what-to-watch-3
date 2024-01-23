@@ -2,10 +2,12 @@ import SignInError from '../sign-in-error/sign-in-error.tsx';
 import AsyncComponent from '../../../components/async-component/async-component.tsx';
 import {useAppSelector} from '../../../hooks';
 import {getError} from '../../../store/reducers/error/selectors.ts';
-import {FormEvent, useState} from 'react';
+import {FormEvent, useEffect, useState} from 'react';
 import {getUserData} from '../../../store/reducers/user/selectors.ts';
 import {store} from '../../../store';
 import {checkAuthAction, loginAction} from '../../../store/api-actions/user.ts';
+import {useNavigate} from 'react-router-dom';
+import {AuthorizationStatus} from '../../../consts.ts';
 
 type FormState = {
   email : string;
@@ -14,13 +16,24 @@ type FormState = {
 
 export default function SignInForm(){
   const errors = useAppSelector(getError);
-
   const [formData, setFormData] = useState<FormState>({email : '', password : ''});
   const userData = useAppSelector(getUserData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    store.dispatch(checkAuthAction());
+  }, []);
+  useEffect(() => {
+    if(userData.authorizationStatus === AuthorizationStatus.Auth){
+      navigate('/');
+    }
+  }, [userData.authorizationStatus, navigate]);
   function handleFormSubmission(evt : FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+    if (formData.email === '' || formData.password === '') {
+      return;
+    }
     store.dispatch(loginAction({login : formData.email, password : formData.password}));
-    store.dispatch(checkAuthAction());
   }
 
   return(

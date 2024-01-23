@@ -29,6 +29,9 @@ export default function FilmCard(props : FilmCardProps){
   function handleMouseLeave(){
     setIsActive(false);
     setIsReadyToPreview(false);
+    if (timer.current !== null){
+      clearTimeout(timer.current);
+    }
   }
   function handleMouseClick(){
     navigate(`/films/${props.id}`);

@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import {Star} from './star/star.tsx';
 import {store} from '../../store';
 import {AppCommentDto} from '../../types.ts';
@@ -23,18 +23,17 @@ export function AddReviewForm({filmId} : AddReviewFormProps) {
       store.dispatch(sendCommentAction(dataToBeingSent));
     }
   }
-  function validateForm(){
-    setIsAbleToSend(reviewData.rating !== 0 && reviewData.text.length >= MINIMAL_REVIEW_TEXT_LENGTH && reviewData.text.length <= MAXIMAL_REVIEW_TEXT_LENGTH);
-  }
   function handleRatingChange(i : number){
-    setReviewData({...reviewData, rating: 10 - i});
-    validateForm();
+    setReviewData({...reviewData, rating: STARS_COUNT - i});
   }
 
-  function handleTextChange(event : React.ChangeEvent<HTMLTextAreaElement>){
+  function handleTextChange(event : React.ChangeEvent<HTMLTextAreaElement>) {
     setReviewData({...reviewData, text: event.target.value});
-    validateForm();
   }
+
+  useEffect(() => {
+    setIsAbleToSend(reviewData.rating !== 0 && reviewData.text.length >= MINIMAL_REVIEW_TEXT_LENGTH && reviewData.text.length <= MAXIMAL_REVIEW_TEXT_LENGTH);
+  }, [reviewData,]);
   return (
     <div className="add-review">
       <form onSubmit={handleFormSubmission} className="add-review__form">

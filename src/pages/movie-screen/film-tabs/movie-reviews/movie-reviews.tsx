@@ -11,7 +11,7 @@ export default function MovieReviews(){
         <div className="film-card__reviews-col">
           {comments.comments.map((comment) => (
             <Comment
-              key={comment.comment}
+              key={comment.id}
               date={`${(new Date(comment.date)).toLocaleDateString('ru-RU',{month : 'long', day: 'numeric', year: 'numeric'})}`}
               user={comment.user}
               comment={comment.comment}
